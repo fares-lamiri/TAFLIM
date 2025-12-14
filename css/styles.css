@@ -1014,7 +1014,7 @@ footer {
   
   .card .card-content {
     padding: 10px 6px;
-    min-height: 55px;
+    min-height: 40px;
   }
 
   .search-results-section {
@@ -1155,6 +1155,7 @@ footer {
 .card div:last-child div:last-child {
     display: none !important;
 }
+
 
 
 
