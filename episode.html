@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAFLIM | مشاهدة الحلقة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #ff3b3b;
+            --bg: #0b0f12;
+            --card: #1a1f25;
+            --text: #e6e6e6;
+            --font-main: 'Tajawal', system-ui;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .back-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .episode-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .episode-title {
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .episode-subtitle {
+            color: #888;
+            font-size: 1.2rem;
+        }
+        
+        .video-player {
+            width: 100%;
+            height: 600px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .server-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .server-tab {
+            padding: 12px 25px;
+            background: var(--card);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .server-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .download-section {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .download-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        
+        .quality-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .download-btn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .video-player {
+                height: 400px;
+            }
+            
+            .episode-title {
+                font-size: 1.6rem;
+            }
+            
+            .server-selector {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- زر العودة -->
+        <a href="details.html" class="back-btn">← العودة للتفاصيل</a>
+        
+        <!-- عنوان الحلقة -->
+        <div class="episode-header">
+            <h1 class="episode-title" id="episode-title">الحلقة 1</h1>
+            <p class="episode-subtitle" id="episode-subtitle">مسلسل الفاتح - الموسم 1</p>
+        </div>
+        
+        <!-- مشغل الفيديو -->
+        <div class="video-player" id="video-player">
+            <!-- سيتم تحميل الفيديو هنا -->
+        </div>
+        
+        <!-- اختيار السيرفر -->
+        <div class="server-selector" id="server-selector">
+            <!-- سيتم تعبئتها بالجافاسكريبت -->
+        </div>
+        
+        <!-- قسم التحميل -->
+        <div class="download-section">
+            <h2 style="color: var(--accent); margin-bottom: 20px;">⬇ خيارات التحميل</h2>
+            <div class="download-grid" id="download-grid">
+                <!-- سيتم تعبئتها بالجافاسكريبت -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/episode.js"></script>
+</body>
+</html>

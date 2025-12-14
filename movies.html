@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAFLIM | الأفلام</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header class="navbar">
+        <button id="menu-btn" aria-label="فتح القائمة الجانبية">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="search-container">
+            <input type="text" id="search" placeholder="ابحث عن فيلم...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+        
+        <div class="logo">TAFLIM</div>
+    </header>
+
+    <!-- طبقة التعتيم -->
+    <div id="overlay"></div>
+
+    <!-- القائمة الجانبية -->
+    <div id="sidebar">
+        <button id="close-sidebar">×</button>
+        <ul>
+            <li><a href="index.html" class="sidebar-link">🏠 الصفحة الرئيسية</a></li>
+            <li><a href="movies.html" class="sidebar-link active">🎬 الأفلام</a></li>
+            <li><a href="series.html" class="sidebar-link">📺 المسلسلات</a></li>
+            <li><a href="anime.html" class="sidebar-link">🇯🇵 الأنمي</a></li>
+        </ul>
+    </div>
+
+    <!-- عرض الفلاتر النشطة -->
+    <div id="active-filters" class="active-filters"></div>
+
+    <!-- شريط الفلاتر -->
+    <div class="filters-bar">
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="category">فئة الفيلم ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="">الكل</button>
+                <button data-value="foreign">أفلام أجنبي</button>
+                <button data-value="asian">أفلام آسيوية</button>
+                <button data-value="turkish">أفلام تركية</button>
+                <button data-value="arabic">أفلام عربية</button>
+                <button data-value="indian">أفلام هندية</button>
+                <button data-value="animation">أفلام أنيميشن</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="genre">النوع ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="">الكل</button>
+                <button data-value="28">أكشن</button>
+                <button data-value="12">مغامرات</button>
+                <button data-value="16">أنيميشن</button>
+                <button data-value="35">كوميدي</button>
+                <button data-value="80">جريمة</button>
+                <button data-value="18">دراما</button>
+                <button data-value="27">رعب</button>
+                <button data-value="10749">رومانسي</button>
+                <button data-value="878">خيال علمي</button>
+                <button data-value="53">إثارة</button>
+                <button data-value="10752">حرب</button>
+                <button data-value="37">غربي</button>
+                <button data-value="14">فانتازيا</button>
+                <button data-value="36">تاريخي</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="year">سنة الإنتاج ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="">الكل</button>
+                <button data-value="2025">2025</button>
+                <button data-value="2024">2024</button>
+                <button data-value="2023">2023</button>
+                <button data-value="2022">2022</button>
+                <button data-value="2021">2021</button>
+                <button data-value="2020">2020</button>
+                <button data-value="older">قبل 2020</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="rating">التقييم ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="">الكل</button>
+                <button data-value="8">+8 ⭐⭐⭐⭐</button>
+                <button data-value="7">+7 ⭐⭐⭐</button>
+                <button data-value="6">+6 ⭐⭐</button>
+                <button data-value="5">+5 ⭐</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم نتائج البحث -->
+    <div class="search-results-section" id="search-results-section">
+        <h2 class="results-title">🔍 نتائج البحث عن الأفلام</h2>
+        <div class="search-results-header">
+            <div class="search-query-container">
+                <span class="search-query-label">بحثت عن:</span>
+                <span class="search-query-text" id="search-query-text"></span>
+            </div>
+            <div class="search-results-count" id="search-results-count"></div>
+        </div>
+        <div class="search-results-container" id="search-results-container"></div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div id="main-content"></div>
+
+    <!-- رسالة نهاية المحتوى -->
+   <!-- رسالة نهاية المحتوى -->
+<div style="
+width: 100%;
+min-height: 180px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+margin-top: 60px;
+margin-bottom: 40px;
+color: #fff;
+">
+
+<div style="font-size: 2.5rem; margin-bottom: 15px;">
+    🎬
+</div>
+
+<div style="font-size: 1.2rem; margin-bottom: 10px;">
+    وصلت إلى نهاية المحتوى المتاح
+</div>
+
+<div style="font-size: 0.95rem; color: #888;">
+    جرب تغيير الفلاتر لمشاهدة المزيد من الأفلام
+</div>
+
+</div>
+    <!-- زر العودة للأعلى -->
+    <button id="back-to-top" class="show">↑</button>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 TAFLIM - جميع الحقوق محفوظة</p>
+            <p class="footer-tagline">🎬 وجهتك الأولى لمشاهدة أفضل الأفلام</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+<script src="js/movies.js"></script>
+</body>
+</html>

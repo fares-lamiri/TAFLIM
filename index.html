@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAFLIM | منصة أفلام ومسلسلات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header class="navbar">
+        <button id="menu-btn" aria-label="فتح القائمة الجانبية">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="search-container">
+            <input type="text" id="search" placeholder="ابحث عن فيلم أو مسلسل أو أنمي...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+        
+        <div class="logo">TAFLIM</div>
+    </header>
+
+    <!-- طبقة التعتيم -->
+    <div id="overlay"></div>
+
+    <!-- القائمة الجانبية -->
+    <div id="sidebar">
+        <button id="close-sidebar">×</button>
+        <ul>
+            <li><a href="index.html" class="sidebar-link active">🏠 الصفحة الرئيسية</a></li>
+            <li><a href="movies.html" class="sidebar-link">🎬 الأفلام</a></li>
+            <li><a href="series.html" class="sidebar-link">📺 المسلسلات</a></li>
+            <li><a href="anime.html" class="sidebar-link">🇯🇵 الأنمي</a></li>
+        </ul>
+    </div>
+
+    <!-- الفلاتر النشطة -->
+    <div id="active-filters" class="active-filters"></div>
+
+    <!-- تبويبات الفلترة -->
+    <div class="filters-bar">
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="category">📁 فئة العرض ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="" class="active">الكل</button>
+                <button data-value="foreign">أفلام أجنبي</button>
+                <button data-value="asian">أفلام آسيوية</button>
+                <button data-value="kdrama">كي دراما</button>
+                <button data-value="turkish">أفلام تركية</button>
+                <button data-value="arabic">أفلام عربية</button>
+                <button data-value="indian">أفلام هندية</button>
+                <button data-value="anime">مسلسلات أنمي</button>
+                <button data-value="ramadan">مسلسلات رمضانية</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="genre">🎭 نوع العرض ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="" class="active">الكل</button>
+                <button data-value="28">أكشن</button>
+                <button data-value="12">مغامرات</button>
+                <button data-value="16">أنيميشن</button>
+                <button data-value="35">كوميدي</button>
+                <button data-value="80">جريمة</button>
+                <button data-value="18">دراما</button>
+                <button data-value="27">رعب</button>
+                <button data-value="10749">رومانسي</button>
+                <button data-value="878">خيال علمي</button>
+                <button data-value="53">إثارة</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="year">📅 سنة العرض ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="" class="active">الكل</button>
+                <button data-value="2025">2025</button>
+                <button data-value="2024">2024</button>
+                <button data-value="2023">2023</button>
+                <button data-value="2022">2022</button>
+                <button data-value="2021">2021</button>
+                <button data-value="2020">2020</button>
+                <button data-value="older">قبل 2020</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="rating">👨‍👩‍👧‍👦 الوضع العائلي ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="" class="active">الكل</button>
+                <button data-value="family">عائلي</button>
+                <button data-value="16">+16</button>
+                <button data-value="18">+18</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- زر إعادة تعيين الفلاتر -->
+    <button id="reset-filters">🗑️ إعادة تعيين الفلاتر</button>
+
+    <!-- السلايدر -->
+    <div class="trending-section" id="trending-section">
+        <h2 class="trending-title">🔥 الأكثر مشاهدة</h2>
+        <div class="trending-wrapper">
+            <button class="trending-arrow left">‹</button>
+            <div class="trending-container" id="trending-container">
+                <!-- سيتم إضافة المحتوى هنا تلقائياً -->
+            </div>
+            <button class="trending-arrow right">›</button>
+        </div>
+    </div>
+
+    <!-- قسم نتائج البحث -->
+    <div class="search-results-section" id="search-results-section">
+        <h2 class="results-title">🔍 نتائج البحث</h2>
+        <div class="search-results-header">
+            <div class="search-query-container">
+                <span class="search-query-label">بحثت عن:</span>
+                <span class="search-query-text" id="search-query-text">فينسنزو</span>
+            </div>
+            <div class="search-results-count" id="search-results-count">12 نتيجة</div>
+        </div>
+        
+        <div class="search-results-container" id="search-results-container">
+            <!-- سيتم إضافة نتائج البحث هنا -->
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div id="main-content">
+        <!-- سيتغير المحتوى هنا تلقائياً -->
+    </div>
+
+    <!-- مؤشر التحميل -->
+    <div class="loading-indicator" id="loading-indicator">
+        <div class="loading-spinner"></div>
+        <p>جاري تحميل المزيد من المحتوى...</p>
+    </div>
+
+    <!-- زر العودة للأعلى -->
+    <button id="back-to-top">↑</button>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 TAFLIM - جميع الحقوق محفوظة</p>
+            <p class="footer-tagline">🎞️ وجهتك الأولى لمشاهدة أفضل الأفلام والمسلسلات</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+<script src="js/main.js"></script>
+</body>
+</html>

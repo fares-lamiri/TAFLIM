@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAFLIM | الأنمي والكرتون</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header class="navbar">
+        <button id="menu-btn" aria-label="فتح القائمة الجانبية">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="search-container">
+            <input type="text" id="search" placeholder="ابحث عن أنمي أو كرتون...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+        
+        <div class="logo">TAFLIM</div>
+    </header>
+
+    <!-- طبقة التعتيم -->
+    <div id="overlay"></div>
+
+    <!-- القائمة الجانبية -->
+    <div id="sidebar">
+        <button id="close-sidebar">×</button>
+        <ul>
+            <li><a href="index.html" class="sidebar-link">🏠 الصفحة الرئيسية</a></li>
+            <li><a href="movies.html" class="sidebar-link">🎬 الأفلام</a></li>
+            <li><a href="series.html" class="sidebar-link">📺 المسلسلات</a></li>
+            <li><a href="anime.html" class="sidebar-link active">🇯🇵 الأنمي والكرتون</a></li>
+        </ul>
+    </div>
+
+    <!-- عرض الفلاتر النشطة -->
+    <div id="active-filters" class="active-filters"></div>
+
+    <!-- شريط الفلاتر -->
+    <div class="filters-bar">
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="category">فئة الأنمي ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="">الكل</button>
+                <button data-value="shonen">شونين (Shonen)</button>
+                <button data-value="shoujo">شوجو (Shoujo)</button>
+                <button data-value="seinen">سينن (Seinen)</button>
+                <button data-value="isekai">إيسيكاي (Isekai)</button>
+                <button data-value="mecha">ميكا (Mecha)</button>
+                <button data-value="slice_of_life">شريحة من الحياة</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="genre">النوع الفني ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="">الكل</button>
+                <button data-value="28">أكشن</button>
+                <button data-value="12">مغامرات</button>
+                <button data-value="16">أنيميشن</button>
+                <button data-value="35">كوميدي</button>
+                <button data-value="14">فانتازيا</button>
+                <button data-value="878">خيال علمي</button>
+                <button data-value="27">رعب</button>
+                <button data-value="10749">رومانسي</button>
+                <button data-value="9648">غموض</button>
+                <button data-value="10751">عائلي</button>
+                <button data-value="10759">أكشن ومغامرات</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="year">سنة الإصدار ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="">الكل</button>
+                <button data-value="2025">2025</button>
+                <button data-value="2024">2024</button>
+                <button data-value="2023">2023</button>
+                <button data-value="2022">2022</button>
+                <button data-value="2021">2021</button>
+                <button data-value="2020">2020</button>
+                <button data-value="older">قبل 2020</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn" data-filter="rating">التقييم ▼</button>
+            <div class="filter-dropdown">
+                <button data-value="">الكل</button>
+                <button data-value="8">+8 ⭐⭐⭐⭐</button>
+                <button data-value="7">+7 ⭐⭐⭐</button>
+                <button data-value="6">+6 ⭐⭐</button>
+                <button data-value="5">+5 ⭐</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم نتائج البحث -->
+    <div class="search-results-section" id="search-results-section">
+        <h2 class="results-title">🔍 نتائج البحث عن الأنمي</h2>
+        <div class="search-results-header">
+            <div class="search-query-container">
+                <span class="search-query-label">بحثت عن:</span>
+                <span class="search-query-text" id="search-query-text"></span>
+            </div>
+            <div class="search-results-count" id="search-results-count"></div>
+        </div>
+        <div class="search-results-container" id="search-results-container"></div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div id="main-content"></div>
+
+    <!-- رسالة نهاية المحتوى -->
+<!-- رسالة نهاية المحتوى -->
+<div style="
+    width: 100%;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    color: #fff;
+">
+
+    <div style="font-size: 2.5rem; margin-bottom: 15px;">
+        🇯🇵
+    </div>
+
+    <div style="font-size: 1.2rem; margin-bottom: 10px;">
+        وصلت إلى نهاية المحتوى المتاح
+    </div>
+
+    <div style="font-size: 0.95rem; color: #888;">
+        جرب تغيير الفلاتر لمشاهدة المزيد من الأنمي
+    </div>
+
+</div>
+
+    <!-- زر العودة للأعلى -->
+    <button id="back-to-top" class="show">↑</button>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 TAFLIM - جميع الحقوق محفوظة</p>
+            <p class="footer-tagline">🇯🇵 وجهتك الأولى لمشاهدة أفضل الأنمي والكرتون</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ========== تطبيق الأنمي مع نظام اللغات الذكي ==========
+        
+        // ===== الإعدادات العامة =====
+        const TMDB_API = {
+            key: "dbb14198ea29a547de77343dc3fe7a37",
+            baseURL: "https://api.themoviedb.org/3",
+            imageBase: "https://image.tmdb.org/t/p/w500"
+        };
+
+        // ===== عناصر DOM =====
+        const mainContent = document.getElementById("main-content");
+        const searchInput = document.getElementById("search");
+        const suggestionsContainer = document.getElementById("search-suggestions");
+        const searchResultsSection = document.getElementById("search-results-section");
+        const searchQueryText = document.getElementById("search-query-text");
+        const searchResultsCount = document.getElementById("search-results-count");
+        const searchResultsContainer = document.getElementById("search-results-container");
+        const backToTopBtn = document.getElementById("back-to-top");
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+        const closeSidebar = document.getElementById("close-sidebar");
+        const overlay = document.getElementById("overlay");
+        const activeFiltersContainer = document.getElementById("active-filters");
+        const endOfContent = document.getElementById("end-of-content");
+
+        // ===== متغيرات حالة التطبيق =====
+        let displayedAnime = [];
+        let currentPage = 1;
+        let filterPage = 1;
+        let isLoading = false;
+        let hasMoreAnime = true;
+        let searchTimer = null;
+        let activeSuggestionIndex = -1;
+        let isGlobalSearch = false;
+        let activeFilters = {};
+        let seenAnimeIds = new Set();
+
+        // ===== قاموس البحث الذكي للأنمي =====
+        const smartSearchDictionary = {
+            "هجوم العمالقة": "Attack on Titan",
+            "سيف النار": "Demon Slayer",
+            "جوجوتسو كايسن": "Jujutsu Kaisen",
+            "بطلي الأكاديمية": "My Hero Academia",
+            "ون بيس": "One Piece",
+            "ناروتو": "Naruto",
+            "دراغون بول": "Dragon Ball",
+            "منتخب طوكيو": "Tokyo Revengers",
+            "أرض الوعد": "The Promised Neverland",
+            "هانتر اكس هانتر": "Hunter x Hunter",
+            "سايلور مون": "Sailor Moon",
+            "سورد ارت اونلاين": "Sword Art Online",
+            "بليتش": "Bleach",
+            "فيري تيل": "Fairy Tail",
+            "وان بانش مان": "One Punch Man",
+            "موب سايكو": "Mob Psycho",
+            "فاير فورس": "Fire Force"
+        };
+
+        // ===== دالة التحويل الذكي =====
+        function smartTranslateQuery(query) {
+            if (!query || query.trim() === "") return query;
+            
+            const lowerQuery = query.toLowerCase().trim();
+            
+            for (const [arabic, english] of Object.entries(smartSearchDictionary)) {
+                if (lowerQuery.includes(arabic.toLowerCase())) {
+                    console.log(`🔤 تحويل "${arabic}" إلى "${english}"`);
+                    return english;
+                }
+            }
+            
+            return query;
+        }
+
+        // ===== نظام اختيار اللغة للأنمي =====
+        function determineAnimeLanguageSettings(originalLanguage) {
+            let apiLanguage = 'en-US';
+            let titleStrategy = 'english';
+            let imageLanguages = 'en,null';
+            
+            // الأنمي الياباني: الروماجي/الياباني
+            if (originalLanguage === 'ja') {
+                apiLanguage = 'ja-JP';
+                titleStrategy = 'romaji';
+                imageLanguages = 'ja,null,en';
+            } else {
+                // باقي اللغات: الإنجليزية
+                apiLanguage = 'en-US';
+                titleStrategy = 'english';
+                imageLanguages = 'en,null';
+            }
+            
+            return { apiLanguage, titleStrategy, imageLanguages };
+        }
+
+        // ===== جلب صورة الغلاف الذكية للأنمي =====
+        async function getSmartPoster(animeId, originalLanguage) {
+            const { imageLanguages } = determineAnimeLanguageSettings(originalLanguage);
+            const imageUrl = `${TMDB_API.baseURL}/tv/${animeId}/images?api_key=${TMDB_API.key}&include_image_language=${imageLanguages}`;
+            
+            try {
+                const response = await fetch(imageUrl);
+                if (!response.ok) throw new Error('فشل جلب الصور');
+                
+                const imageData = await response.json();
+                
+                if (imageData.posters && imageData.posters.length > 0) {
+                    const posterPath = imageData.posters[0].file_path;
+                    return `${TMDB_API.imageBase}${posterPath}`;
+                }
+            } catch (error) {
+                console.error("❌ خطأ في جلب صور الأنمي:", error);
+            }
+            
+            return `${TMDB_API.imageBase}/wwemzKWzjKYJFfCeiB57q3r4Bcm.png`;
+        }
+
+        // ===== جلب بيانات أنمي مع العنوان الذكي =====
+        async function fetchSmartAnimeData(animeId, originalLanguage) {
+            const { apiLanguage, titleStrategy } = determineAnimeLanguageSettings(originalLanguage);
+            
+            const animeUrl = `${TMDB_API.baseURL}/tv/${animeId}?api_key=${TMDB_API.key}&language=${apiLanguage}`;
+            
+            try {
+                const response = await fetch(animeUrl);
+                if (!response.ok) throw new Error('فشل جلب بيانات الأنمي');
+                
+                const animeData = await response.json();
+                let finalTitle = animeData.name || animeData.original_name;
+                
+                // إذا طلبت اليابانية ولم توجد ترجمة، استخدم الإنجليزية
+                if (apiLanguage === 'ja-JP' && (!animeData.name || animeData.name === animeData.original_name)) {
+                    const englishUrl = `${TMDB_API.baseURL}/tv/${animeId}?api_key=${TMDB_API.key}&language=en-US`;
+                    const englishResponse = await fetch(englishUrl);
+                    const englishData = await englishResponse.json();
+                    finalTitle = englishData.name || animeData.original_name;
+                }
+                
+                const posterUrl = await getSmartPoster(animeId, originalLanguage);
+                
+                // تحديد تصنيف الأنمي
+                const category = detectAnimeCategory(finalTitle, animeData.genre_ids || []);
+                
+                return {
+                    id: animeData.id,
+                    name: finalTitle,
+                    original_name: animeData.original_name,
+                    poster_path: posterUrl,
+                    backdrop_path: animeData.backdrop_path,
+                    overview: animeData.overview,
+                    first_air_date: animeData.first_air_date,
+                    vote_average: animeData.vote_average,
+                    vote_count: animeData.vote_count,
+                    genre_ids: animeData.genre_ids || [],
+                    original_language: animeData.original_language,
+                    popularity: animeData.popularity,
+                    type: "anime",
+                    category: category
+                };
+                
+            } catch (error) {
+                console.error("❌ خطأ في جلب بيانات الأنمي الذكي:", error);
+                return null;
+            }
+        }
+
+        // ===== اكتشاف تصنيف الأنمي =====
+        function detectAnimeCategory(title, genreIds) {
+            const titleLower = (title || "").toLowerCase();
+            
+            // شونين
+            if (titleLower.includes('naruto') || titleLower.includes('one piece') || 
+                titleLower.includes('dragon ball') || titleLower.includes('my hero academia') ||
+                titleLower.includes('demon slayer') || titleLower.includes('jujutsu kaisen')) {
+                return "shonen";
+            }
+            
+            // شوجو
+            if (titleLower.includes('sailor moon') || titleLower.includes('fruits basket') ||
+                titleLower.includes('ouran') || titleLower.includes('vampire knight')) {
+                return "shoujo";
+            }
+            
+            // إيسيكاي
+            if (titleLower.includes('sword art online') || titleLower.includes('re:zero') ||
+                titleLower.includes('overlord') || titleLower.includes('konosuba')) {
+                return "isekai";
+            }
+            
+            // سينن
+            if (titleLower.includes('berserk') || titleLower.includes('vinland saga') ||
+                titleLower.includes('monster') || titleLower.includes('ghost in the shell')) {
+                return "seinen";
+            }
+            
+            // ميكا
+            if (titleLower.includes('gundam') || titleLower.includes('evangelion') ||
+                titleLower.includes('code geass') || titleLower.includes('gurren lagann')) {
+                return "mecha";
+            }
+            
+            // شريحة من الحياة
+            if (genreIds.includes(35) || titleLower.includes('k-on') || 
+                titleLower.includes('slice of life') || titleLower.includes('non non biyori')) {
+                return "slice_of_life";
+            }
+            
+            return "shonen"; // افتراضي
+        }
+
+        // ===== البحث الذكي العالمي =====
+        async function performSmartSearch(query, page = 1) {
+            const translatedQuery = smartTranslateQuery(query);
+            
+            searchQueryText.textContent = query;
+            searchResultsSection.classList.add('active');
+            mainContent.style.display = 'none';
+            endOfContent.classList.remove('show');
+            
+            searchResultsContainer.innerHTML = `
+                <div class="search-no-results">
+                    <div class="loading-spinner"></div>
+                    <p>جاري البحث عن "${query}"...</p>
+                </div>
+            `;
+            
+            try {
+                const searchUrl = `${TMDB_API.baseURL}/search/tv?api_key=${TMDB_API.key}&query=${encodeURIComponent(translatedQuery)}&language=en-US&page=${page}&with_genres=16`;
+                const response = await fetch(searchUrl);
+                
+                if (!response.ok) throw new Error('فشل البحث');
+                
+                const data = await response.json();
+                
+                if (!data.results || data.results.length === 0) {
+                    searchResultsCount.textContent = "0 نتيجة";
+                    searchResultsContainer.innerHTML = `
+                        <div class="search-no-results">
+                            <div>🔍</div>
+                            <p>لا توجد نتائج للبحث "${query}"</p>
+                            <p class="suggestions">جرب كلمات بحث أخرى أو تحقق من التهجئة</p>
+                        </div>
+                    `;
+                    return [];
+                }
+                
+                // تصفية النتائج لمنع التكرار
+                const uniqueResults = [];
+                const seenIds = new Set();
+                
+                for (const item of data.results) {
+                    if (!item.poster_path) continue;
+                    if (seenIds.has(item.id)) continue;
+                    
+                    seenIds.add(item.id);
+                    uniqueResults.push(item);
+                }
+                
+                searchResultsCount.textContent = `${uniqueResults.length} نتيجة`;
+                
+                // جلب البيانات الكاملة لكل أنمي
+                const processedResults = await Promise.all(
+                    uniqueResults.map(async (item) => {
+                        const animeData = await fetchSmartAnimeData(item.id, item.original_language || 'ja');
+                        return animeData;
+                    })
+                );
+                
+                const validResults = processedResults.filter(item => item !== null);
+                
+                if (validResults.length === 0) {
+                    searchResultsContainer.innerHTML = `
+                        <div class="search-no-results">
+                            <div>⚠️</div>
+                            <p>لا توجد نتائج صالحة للعرض</p>
+                        </div>
+                    `;
+                    return [];
+                }
+                
+                return validResults;
+                
+            } catch (error) {
+                console.error("❌ خطأ في البحث الذكي:", error);
+                searchResultsContainer.innerHTML = `
+                    <div class="search-no-results">
+                        <div>⚠️</div>
+                        <p>حدث خطأ أثناء البحث</p>
+                        <p class="suggestions">تأكد من اتصال الإنترنت وحاول مرة أخرى</p>
+                    </div>
+                `;
+                return [];
+            }
+        }
+
+        // ===== عرض اقتراحات البحث =====
+        async function showSearchSuggestions(query) {
+            if (!query || query.trim().length < 2) {
+                suggestionsContainer.style.display = 'none';
+                activeSuggestionIndex = -1;
+                return;
+            }
+            
+            const translatedQuery = smartTranslateQuery(query);
+            
+            suggestionsContainer.innerHTML = `
+                <div class="no-results">
+                    <div>🔍 جاري البحث عن "${query}"...</div>
+                </div>
+            `;
+            suggestionsContainer.style.display = 'block';
+            
+            try {
+                const url = `${TMDB_API.baseURL}/search/tv?api_key=${TMDB_API.key}&query=${encodeURIComponent(translatedQuery)}&language=en-US&page=1&with_genres=16`;
+                const response = await fetch(url);
+                
+                if (!response.ok) return;
+                
+                const data = await response.json();
+                const results = data.results ? data.results.slice(0, 8) : [];
+                
+                if (results.length === 0) {
+                    suggestionsContainer.innerHTML = `
+                        <div class="no-results">
+                            <div>🔍 لا توجد اقتراحات لـ "${query}"</div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                suggestionsContainer.innerHTML = '';
+                activeSuggestionIndex = -1;
+                
+                results.forEach((item, index) => {
+                    if (!item.poster_path) return;
+                    
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.dataset.index = index;
+                    
+                    const title = item.name || item.original_name || "غير معروف";
+                    const year = item.first_air_date ? item.first_air_date.substring(0, 4) : "N/A";
+                    
+                    const posterUrl = item.poster_path ? 
+                        `${TMDB_API.imageBase}${item.poster_path}` : 
+                        `${TMDB_API.imageBase}/wwemzKWzjKYJFfCeiB57q3r4Bcm.png`;
+                    
+                    div.innerHTML = `
+                        <img src="${posterUrl}" alt="${title}">
+                        <div class="suggestion-info">
+                            <div class="suggestion-title">${title}</div>
+                            <div class="suggestion-details">🇯🇵 أنمي • ${year}</div>
+                        </div>
+                    `;
+                    
+                    div.onclick = async () => {
+                        const animeData = await fetchSmartAnimeData(item.id, item.original_language || 'ja');
+                        if (animeData) {
+                            showSingleSearchResult(animeData);
+                        }
+                    };
+                    
+                    div.onmouseenter = () => {
+                        document.querySelectorAll('.suggestion-item').forEach(s => s.classList.remove('active'));
+                        div.classList.add('active');
+                        activeSuggestionIndex = index;
+                    };
+                    
+                    suggestionsContainer.appendChild(div);
+                });
+                
+            } catch (error) {
+                console.error("❌ خطأ في جلب الاقتراحات:", error);
+            }
+        }
+
+        // ===== عرض نتيجة بحث واحدة =====
+        function showSingleSearchResult(animeData) {
+            searchQueryText.textContent = animeData.name;
+            searchResultsCount.textContent = "1 نتيجة";
+            searchResultsSection.classList.add('active');
+            mainContent.style.display = 'none';
+            endOfContent.classList.remove('show');
+            searchInput.value = '';
+            suggestionsContainer.style.display = 'none';
+            
+            searchResultsContainer.innerHTML = '';
+            const card = createAnimeCard(animeData);
+            searchResultsContainer.appendChild(card);
+        }
+
+        // ===== إنشاء بطاقة أنمي =====
+        function createAnimeCard(anime) {
+            const card = document.createElement("div");
+            card.className = "card";
+            
+            const title = anime.name || "غير معروف";
+            const year = anime.first_air_date ? anime.first_air_date.substring(0, 4) : "غير معروف";
+            const rating = anime.vote_average ? anime.vote_average.toFixed(1) : "N/A";
+            const posterUrl = anime.poster_path;
+            
+            let languageBadge = "";
+            if (anime.original_language === 'ja') {
+                languageBadge = "🇯🇵 ياباني";
+            } else {
+                languageBadge = "🌍 إنجليزي";
+            }
+            
+            let categoryName = "";
+            let categoryIcon = "";
+            
+            switch(anime.category) {
+                case 'shonen':
+                    categoryName = "شونين";
+                    categoryIcon = "⚔️";
+                    break;
+                case 'shoujo':
+                    categoryName = "شوجو";
+                    categoryIcon = "🌸";
+                    break;
+                case 'seinen':
+                    categoryName = "سينن";
+                    categoryIcon = "🎭";
+                    break;
+                case 'isekai':
+                    categoryName = "إيسيكاي";
+                    categoryIcon = "🌀";
+                    break;
+                case 'mecha':
+                    categoryName = "ميكا";
+                    categoryIcon = "🤖";
+                    break;
+                case 'slice_of_life':
+                    categoryName = "شريحة من الحياة";
+                    categoryIcon = "☕";
+                    break;
+                default:
+                    categoryName = "أنمي";
+                    categoryIcon = "🇯🇵";
+            }
+            
+            card.innerHTML = `
+                <div class="language-badge">${languageBadge}</div>
+                <img src="${posterUrl}" alt="${title}" loading="lazy">
+                <h3>${title}</h3>
+                <div style="padding: 0 12px 12px; display: flex; flex-direction: column; gap: 5px; font-size: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between; color: #aaa;">
+                        <span>${year}</span>
+                        <span>⭐ ${rating}</span>
+                    </div>
+                    <div style="color: #666; text-align: center; font-size: 0.75rem;">
+                        ${categoryIcon} ${categoryName}
+                    </div>
+                </div>
+            `;
+            
+            card.onclick = () => {
+                window.location.href = `details.html?type=tv&id=${anime.id}`;
+            };
+            
+            return card;
+        }
+
+        // ===== نظام التحميل التلقائي =====
+        function setupInfiniteScroll() {
+            let scrollTimeout;
+            
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                
+                scrollTimeout = setTimeout(() => {
+                    const scrollPosition = window.scrollY + window.innerHeight;
+                    const pageHeight = document.documentElement.scrollHeight - 100;
+                    
+                    if (scrollPosition >= pageHeight * 0.8 && !isLoading && hasMoreAnime) {
+                        if (isGlobalSearch) {
+                            loadMoreSearchResults();
+                        } else if (Object.keys(activeFilters).length > 0) {
+                            loadMoreFilteredAnime();
+                        } else {
+                            loadMoreAnime();
+                        }
+                    }
+                    
+                    backToTopBtn.style.display = window.scrollY > 300 ? "flex" : "none";
+                }, 100);
+            });
+        }
+
+        // ===== نظام التصنيفات العالمية =====
+        function getDiscoverQueryParams() {
+            let params = {
+                api_key: TMDB_API.key,
+                language: 'en-US',
+                page: filterPage,
+                sort_by: 'popularity.desc',
+                with_genres: '16' // الأنمي فقط
+            };
+            
+            // تطبيق فلاتر التصنيف
+            if (activeFilters.category) {
+                switch(activeFilters.category.value) {
+                    case 'shonen':
+                        // شونين: عادة ما يكون أكشن ومغامرات
+                        params.with_keywords = '210024|9715';
+                        break;
+                    case 'shoujo':
+                        // شوجو: رومانسي
+                        params.with_genres = '16,10749';
+                        break;
+                    case 'seinen':
+                        // سينن: للكبار
+                        params.with_keywords = '9716';
+                        break;
+                    case 'isekai':
+                        // إيسيكاي: عوالم بديلة
+                        params.with_keywords = '210024|9717';
+                        break;
+                    case 'mecha':
+                        // ميكا: روبوتات
+                        params.with_keywords = '9718';
+                        break;
+                    case 'slice_of_life':
+                        // شريحة من الحياة: كوميدي
+                        params.with_genres = '16,35';
+                        break;
+                }
+            }
+            
+            // تطبيق فلاتر النوع
+            if (activeFilters.genre) {
+                params.with_genres = `16,${activeFilters.genre.value}`;
+            }
+            
+            // تطبيق فلاتر السنة
+            if (activeFilters.year) {
+                if (activeFilters.year.value === 'older') {
+                    params.first_air_date = { lte: '2019-12-31' };
+                } else {
+                    params.first_air_date_year = activeFilters.year.value;
+                }
+            }
+            
+            // تطبيق فلاتر التقييم
+            if (activeFilters.rating) {
+                params['vote_average.gte'] = activeFilters.rating.value;
+            }
+            
+            return params;
+        }
+
+        // ===== دوال التحميل =====
+        let searchPage = 1;
+        let currentSearchQuery = "";
+        
+        async function loadMoreSearchResults() {
+            if (isLoading || !hasMoreAnime) return;
+            
+            isLoading = true;
+            showLoadingIndicator();
+            searchPage++;
+            
+            try {
+                const newResults = await performSmartSearch(currentSearchQuery, searchPage);
+                
+                if (newResults.length > 0) {
+                    newResults.forEach(result => {
+                        if (!seenAnimeIds.has(result.id)) {
+                            seenAnimeIds.add(result.id);
+                            const card = createAnimeCard(result);
+                            searchResultsContainer.appendChild(card);
+                        }
+                    });
+                } else {
+                    hasMoreAnime = false;
+                }
+            } catch (error) {
+                console.error("❌ خطأ في تحميل المزيد من نتائج البحث:", error);
+                hasMoreAnime = false;
+            } finally {
+                isLoading = false;
+                hideLoadingIndicator();
+                
+                if (!hasMoreAnime) {
+                    endOfContent.classList.add('show');
+                }
+            }
+        }
+
+        async function loadMoreAnime() {
+            if (isLoading || !hasMoreAnime) return;
+            
+            isLoading = true;
+            showLoadingIndicator();
+            currentPage++;
+            
+            try {
+                const url = `${TMDB_API.baseURL}/discover/tv?api_key=${TMDB_API.key}&with_genres=16&language=en-US&page=${currentPage}&sort_by=popularity.desc`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    const newAnime = await Promise.all(
+                        data.results.map(async (anime) => {
+                            if (seenAnimeIds.has(anime.id)) return null;
+                            seenAnimeIds.add(anime.id);
+                            return await fetchSmartAnimeData(anime.id, anime.original_language || 'ja');
+                        })
+                    );
+                    
+                    const validAnime = newAnime.filter(anime => anime !== null);
+                    
+                    if (validAnime.length > 0) {
+                        validAnime.forEach(anime => {
+                            const card = createAnimeCard(anime);
+                            mainContent.appendChild(card);
+                        });
+                        displayedAnime = [...displayedAnime, ...validAnime];
+                    }
+                    
+                    hasMoreAnime = currentPage < (data.total_pages || 1);
+                } else {
+                    hasMoreAnime = false;
+                }
+            } catch (error) {
+                console.error("❌ خطأ في تحميل المزيد من الأنمي:", error);
+                hasMoreAnime = false;
+            } finally {
+                isLoading = false;
+                hideLoadingIndicator();
+                
+                if (!hasMoreAnime) {
+                    endOfContent.classList.add('show');
+                }
+            }
+        }
+
+        async function loadMoreFilteredAnime() {
+            if (isLoading || !hasMoreAnime) return;
+            
+            isLoading = true;
+            showLoadingIndicator();
+            filterPage++;
+            
+            try {
+                const params = getDiscoverQueryParams();
+                params.page = filterPage;
+                
+                const queryString = Object.keys(params)
+                    .map(key => {
+                        if (typeof params[key] === 'object') {
+                            return Object.keys(params[key])
+                                .map(subKey => `${key}.${subKey}=${params[key][subKey]}`)
+                                .join('&');
+                        }
+                        return `${key}=${encodeURIComponent(params[key])}`;
+                    })
+                    .join('&');
+                
+                const url = `${TMDB_API.baseURL}/discover/tv?${queryString}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    const newAnime = await Promise.all(
+                        data.results.map(async (anime) => {
+                            if (seenAnimeIds.has(anime.id)) return null;
+                            seenAnimeIds.add(anime.id);
+                            return await fetchSmartAnimeData(anime.id, anime.original_language || 'ja');
+                        })
+                    );
+                    
+                    const validAnime = newAnime.filter(anime => anime !== null);
+                    
+                    if (validAnime.length > 0) {
+                        validAnime.forEach(anime => {
+                            const card = createAnimeCard(anime);
+                            mainContent.appendChild(card);
+                        });
+                        displayedAnime = [...displayedAnime, ...validAnime];
+                    }
+                    
+                    hasMoreAnime = filterPage < (data.total_pages || 1);
+                } else {
+                    hasMoreAnime = false;
+                }
+            } catch (error) {
+                console.error("❌ خطأ في تحميل المزيد من الأنمي المفلترة:", error);
+                hasMoreAnime = false;
+            } finally {
+                isLoading = false;
+                hideLoadingIndicator();
+                
+                if (!hasMoreAnime) {
+                    endOfContent.classList.add('show');
+                }
+            }
+        }
+
+        // ===== تطبيق الفلاتر =====
+        async function applyFilters() {
+            displayedAnime = [];
+            mainContent.innerHTML = '';
+            filterPage = 1;
+            hasMoreAnime = true;
+            endOfContent.classList.remove('show');
+            seenAnimeIds.clear();
+            
+            showLoadingIndicator();
+            
+            const params = getDiscoverQueryParams();
+            const queryString = Object.keys(params)
+                .map(key => `${key}=${encodeURIComponent(params[key])}`)
+                .join('&');
+            
+            const url = `${TMDB_API.baseURL}/discover/tv?${queryString}`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    const animeList = await Promise.all(
+                        data.results.map(async (anime) => {
+                            seenAnimeIds.add(anime.id);
+                            return await fetchSmartAnimeData(anime.id, anime.original_language || 'ja');
+                        })
+                    );
+                    
+                    const validAnime = animeList.filter(anime => anime !== null);
+                    
+                    if (validAnime.length > 0) {
+                        validAnime.forEach(anime => {
+                            const card = createAnimeCard(anime);
+                            mainContent.appendChild(card);
+                        });
+                        displayedAnime = validAnime;
+                    }
+                    
+                    hasMoreAnime = filterPage < (data.total_pages || 1);
+                    
+                    searchResultsSection.classList.remove('active');
+                    mainContent.style.display = 'grid';
+                    isGlobalSearch = false;
+                    
+                    updateActiveFiltersDisplay();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    mainContent.innerHTML = `
+                        <div class="search-no-results" style="grid-column:1/-1;">
+                            <div style="font-size: 3rem; margin-bottom: 20px;">🔍</div>
+                            <div style="font-size: 1.2rem; margin-bottom: 10px;">لا توجد نتائج للفلاتر المحددة</div>
+                            <div style="color: #888;">جرب تغيير معايير البحث أو استخدام فلاتر مختلفة</div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error("❌ خطأ في تطبيق الفلاتر:", error);
+                mainContent.innerHTML = `
+                    <div class="search-no-results" style="grid-column:1/-1;">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 10px;">حدث خطأ في تطبيق الفلاتر</div>
+                        <div style="color: #888;">تأكد من اتصال الإنترنت وحاول مرة أخرى</div>
+                    </div>
+                `;
+            }
+            
+            hideLoadingIndicator();
+        }
+
+        // ===== إعدادات البحث =====
+        function setupSearch() {
+            if (!searchInput) return;
+            
+            searchInput.addEventListener('input', () => {
+                clearTimeout(searchTimer);
+                
+                const query = searchInput.value.trim();
+                currentSearchQuery = query;
+                
+                if (query.length >= 2) {
+                    showSearchSuggestions(query);
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
+                
+                searchTimer = setTimeout(async () => {
+                    if (query.length === 0) {
+                        searchResultsSection.classList.remove('active');
+                        mainContent.style.display = 'grid';
+                        endOfContent.classList.remove('show');
+                        isGlobalSearch = false;
+                        searchPage = 1;
+                        return;
+                    }
+                    
+                    isGlobalSearch = true;
+                    searchPage = 1;
+                    seenAnimeIds.clear();
+                    
+                    const results = await performSmartSearch(query, searchPage);
+                    
+                    if (results.length > 0) {
+                        searchResultsContainer.innerHTML = '';
+                        results.forEach(result => {
+                            seenAnimeIds.add(result.id);
+                            const card = createAnimeCard(result);
+                            searchResultsContainer.appendChild(card);
+                        });
+                        hasMoreAnime = true;
+                    }
+                }, 500);
+            });
+            
+            searchInput.addEventListener('keydown', (e) => {
+                const items = suggestionsContainer.querySelectorAll('.suggestion-item');
+                if (items.length === 0) return;
+                
+                switch(e.key) {
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        activeSuggestionIndex = (activeSuggestionIndex + 1) % items.length;
+                        updateActiveSuggestion(items);
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        activeSuggestionIndex = (activeSuggestionIndex - 1 + items.length) % items.length;
+                        updateActiveSuggestion(items);
+                        break;
+                    case 'Enter':
+                        if (activeSuggestionIndex >= 0) {
+                            e.preventDefault();
+                            items[activeSuggestionIndex].click();
+                        } else {
+                            searchInput.blur();
+                        }
+                        break;
+                    case 'Escape':
+                        suggestionsContainer.style.display = 'none';
+                        break;
+                }
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+        }
+
+        function updateActiveSuggestion(items) {
+            items.forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === activeSuggestionIndex) {
+                    item.classList.add('active');
+                    item.scrollIntoView({ block: 'nearest' });
+                }
+            });
+        }
+
+        // ===== إعداد الفلاتر =====
+        function setupFilters() {
+            document.querySelectorAll('.filter-dropdown button').forEach(item => {
+                item.onclick = (e) => {
+                    const dropdown = item.closest('.filter-dropdown');
+                    if (dropdown) {
+                        dropdown.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                        item.classList.add('active');
+                        
+                        const filterType = dropdown.closest('.filter-group')?.querySelector('.filter-btn')?.dataset.filter;
+                        const value = item.dataset.value || "";
+                        const displayText = item.textContent;
+                        
+                        if (value === "") {
+                            delete activeFilters[filterType];
+                        } else {
+                            activeFilters[filterType] = { value, displayText };
+                        }
+                        
+                        dropdown.classList.remove('active');
+                        const filterBtn = item.closest('.filter-group')?.querySelector('.filter-btn');
+                        if (filterBtn) filterBtn.classList.remove('active');
+                        
+                        applyFilters();
+                        e.stopPropagation();
+                    }
+                };
+            });
+        }
+
+        function updateActiveFiltersDisplay() {
+            if (!activeFiltersContainer) return;
+            
+            activeFiltersContainer.innerHTML = '';
+            const activeCount = Object.keys(activeFilters).length;
+            
+            if (activeCount === 0) {
+                activeFiltersContainer.style.display = 'none';
+                return;
+            }
+            
+            activeFiltersContainer.style.display = 'flex';
+            
+            const clearBtn = document.createElement('button');
+            clearBtn.className = 'clear-all';
+            clearBtn.textContent = '🗑️ مسح الكل';
+            clearBtn.onclick = clearAllFilters;
+            activeFiltersContainer.appendChild(clearBtn);
+            
+            for (const [type, filter] of Object.entries(activeFilters)) {
+                if (!filter || !filter.value) continue;
+                
+                const tag = document.createElement('div');
+                tag.className = 'filter-tag';
+                
+                const icons = { category: '📁', genre: '🎭', year: '📅', rating: '⭐' };
+                const icon = icons[type] || '🏷️';
+                
+                tag.innerHTML = `<span>${icon} ${filter.displayText}</span><span class="remove" data-type="${type}">×</span>`;
+                tag.querySelector('.remove').onclick = (e) => {
+                    e.stopPropagation();
+                    removeFilter(type);
+                };
+                
+                activeFiltersContainer.appendChild(tag);
+            }
+        }
+
+        function removeFilter(type) {
+            delete activeFilters[type];
+            
+            const filterBtn = document.querySelector(`.filter-btn[data-filter="${type}"]`);
+            const dropdown = filterBtn.nextElementSibling;
+            dropdown.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            dropdown.querySelector('button[data-value=""]').classList.add('active');
+            
+            applyFilters();
+        }
+
+        function clearAllFilters() {
+            document.querySelectorAll('.filter-dropdown').forEach(dropdown => {
+                dropdown.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+                dropdown.querySelector('button[data-value=""]').classList.add('active');
+            });
+            
+            activeFilters = {};
+            displayedAnime = [];
+            mainContent.innerHTML = '';
+            currentPage = 1;
+            filterPage = 1;
+            hasMoreAnime = true;
+            endOfContent.classList.remove('show');
+            seenAnimeIds.clear();
+            
+            loadInitialAnime();
+            updateActiveFiltersDisplay();
+        }
+
+        // ===== دوال مساعدة =====
+        function showLoadingIndicator() {
+            const existingIndicator = document.querySelector('.loading-indicator');
+            if (!existingIndicator) {
+                const indicator = document.createElement('div');
+                indicator.className = 'loading-indicator';
+                indicator.style.display = 'block';
+                indicator.innerHTML = `
+                    <div class="loading-spinner"></div>
+                    <div>جاري تحميل الأنمي...</div>
+                `;
+                mainContent.appendChild(indicator);
+            }
+        }
+
+        function hideLoadingIndicator() {
+            const indicator = document.querySelector('.loading-indicator');
+            if (indicator) {
+                indicator.style.display = 'none';
+            }
+        }
+
+        // ===== تحميل الأنمي الأولي =====
+        async function loadInitialAnime() {
+            showLoadingIndicator();
+            
+            try {
+                const url = `${TMDB_API.baseURL}/discover/tv?api_key=${TMDB_API.key}&with_genres=16&language=en-US&page=1&sort_by=popularity.desc`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    const animeList = await Promise.all(
+                        data.results.map(async (anime) => {
+                            seenAnimeIds.add(anime.id);
+                            return await fetchSmartAnimeData(anime.id, anime.original_language || 'ja');
+                        })
+                    );
+                    
+                    const validAnime = animeList.filter(anime => anime !== null);
+                    
+                    if (validAnime.length > 0) {
+                        validAnime.forEach(anime => {
+                            const card = createAnimeCard(anime);
+                            mainContent.appendChild(card);
+                        });
+                        displayedAnime = validAnime;
+                        hasMoreAnime = true;
+                    }
+                }
+            } catch (error) {
+                console.error("❌ خطأ في تحميل الأنمي الأولية:", error);
+                mainContent.innerHTML = `
+                    <div class="search-no-results" style="grid-column:1/-1;">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 10px;">فشل تحميل الأنمي</div>
+                        <div style="color: #888;">تأكد من اتصال الإنترنت وحاول مرة أخرى</div>
+                        <button onclick="location.reload()" style="
+                            margin-top: 20px;
+                            padding: 10px 20px;
+                            background: var(--accent);
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-family: inherit;
+                        ">إعادة المحاولة</button>
+                    </div>
+                `;
+            }
+            
+            hideLoadingIndicator();
+        }
+
+        // ===== إعدادات جانبية =====
+        function setupSidebar() {
+            if (!menuBtn || !sidebar || !overlay || !closeSidebar) return;
+            
+            menuBtn.onclick = (e) => { 
+                e.stopPropagation();
+                sidebar.classList.add("show"); 
+                overlay.classList.add("show"); 
+            };
+            
+            closeSidebar.onclick = (e) => { 
+                e.stopPropagation();
+                sidebar.classList.remove("show"); 
+                overlay.classList.remove("show"); 
+            };
+            
+            overlay.onclick = (e) => { 
+                if (e.target === overlay) {
+                    sidebar.classList.remove("show"); 
+                    overlay.classList.remove("show"); 
+                }
+            };
+            
+            document.querySelectorAll('#sidebar a').forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove("show");
+                    overlay.classList.remove("show");
+                });
+            });
+        }
+
+        function setupBackToTop() {
+            if (!backToTopBtn) return;
+            
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+
+        // ===== التعامل مع القوائم المنسدلة =====
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.onclick = (e) => {
+                const dropdown = btn.nextElementSibling;
+                const isActive = dropdown.classList.contains('active');
+
+                document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('active'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+
+                if (!isActive) {
+                    dropdown.classList.add('active');
+                    btn.classList.add('active');
+                }
+                e.stopPropagation();
+            };
+        });
+
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        });
+
+        // ===== تهيئة التطبيق =====
+        async function initApp() {
+            console.log("🇯🇵 تطبيق الأنمي يعمل...");
+            console.log("🔤 البحث الذكي العالمي مفعّل");
+            console.log("🌍 نظام اختيار اللغة والصور الذكي جاهز");
+            
+            setupSidebar();
+            setupBackToTop();
+            setupInfiniteScroll();
+            setupFilters();
+            setupSearch();
+            
+            await loadInitialAnime();
+            
+            console.log("✅ التطبيق جاهز للاستخدام");
+        }
+
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

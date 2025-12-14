@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAFLIM | تفاصيل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #ff3b3b;
+            --bg: #0b0f12;
+            --card: #1a1f25;
+            --text: #e6e6e6;
+            --secondary: #888;
+            --font-main: 'Tajawal', system-ui;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ========== النافبار ========== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: rgba(11, 15, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 59, 59, 0.3);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
+            text-shadow: 0 2px 10px rgba(255, 59, 59, 0.3);
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ========== قسم التفاصيل الرئيسي ========== */
+        .detail-hero {
+            display: flex;
+            gap: 40px;
+            padding: 40px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .poster-container {
+            flex: 0 0 300px;
+            position: relative;
+        }
+
+        #detail-poster {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s;
+        }
+
+        .poster-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .detail-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        #detail-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .detail-meta {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rating {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        #detail-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            color: #ccc;
+            max-width: 800px;
+        }
+
+        /* ========== أقسام إضافية ========== */
+        .detail-section {
+            background: rgba(26, 31, 37, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 5%;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 59, 59, 0.3);
+        }
+
+        /* ========== أزرار التحكم في الحلقات ========== */
+        .episodes-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+
+        .episodes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid #333;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            min-width: 60px;
+            min-height: 60px;
+        }
+
+        .control-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* ========== الأزرار الرئيسية ========== */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .btn {
+            padding: 16px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 180px;
+            font-family: var(--font-main);
+        }
+
+        .watch-btn {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 59, 59, 0.3);
+        }
+
+        .watch-btn:hover {
+            background: #ff0000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 59, 59, 0.5);
+        }
+
+        .download-btn {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .download-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* ========== قائمة السيرفرات المنبثقة (مدمجة) ========== */
+        .servers-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: var(--card);
+            border-radius: 15px;
+            padding: 20px;
+            width: 350px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 100;
+            border: 1px solid rgba(255, 59, 59, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .servers-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .servers-dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 59, 59, 0.3);
+        }
+
+        .servers-dropdown-title {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .servers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .server-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .server-item:hover {
+            background: rgba(255, 59, 59, 0.1);
+            border-color: var(--accent);
+        }
+
+        .server-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .server-quality {
+            background: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .server-name {
+            font-weight: bold;
+        }
+
+        .server-action-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+        }
+
+        .server-action-btn:hover {
+            background: #ff0000;
+        }
+
+        /* ========== قسم الحلقات الجديد ========== */
+        .episodes-main-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .episodes-list-container {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .episodes-scroll-indicator {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(to bottom, rgba(26, 31, 37, 1), transparent);
+            padding: 10px 0;
+            text-align: center;
+            color: var(--accent);
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+
+        .episodes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .episode-list-item {
+            background: var(--card);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .episode-list-item:hover {
+            background: rgba(255, 59, 59, 0.1);
+            border-color: var(--accent);
+            transform: translateX(-5px);
+        }
+
+        .episode-list-item.active {
+            background: rgba(255, 59, 59, 0.2);
+            border-color: var(--accent);
+        }
+
+        .episode-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent);
+            min-width: 80px;
+        }
+
+        .episode-title {
+            font-weight: bold;
+            flex: 1;
+            margin: 0 15px;
+        }
+
+        .episode-meta {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        /* ========== قسم المواسم والإصدارات ========== */
+        .seasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .season-card {
+            background: var(--card);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .season-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 59, 59, 0.3);
+        }
+
+        .season-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .season-info {
+            padding: 15px;
+        }
+
+        .season-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .season-meta {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ========== قسم التحميل للأفلام ========== */
+        .download-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .download-card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .quality-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* ========== قسم التريلر ========== */
+        .trailer-section {
+            margin-top: 30px;
+        }
+
+        .trailer-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #trailer-iframe {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ========== التوصيات ========== */
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .rec-card {
+            background: var(--card);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .rec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 59, 59, 0.3);
+        }
+
+        .rec-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .rec-info {
+            padding: 15px;
+        }
+
+        .rec-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* ========== الفوتر ========== */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background: #000;
+            color: #aaa;
+            border-top: 1px solid #333;
+        }
+
+        /* ========== التجاوب ========== */
+        @media (max-width: 768px) {
+            .detail-hero {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .poster-container {
+                flex: none;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            #detail-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .detail-meta {
+                justify-content: center;
+            }
+
+            .action-buttons {
+                justify-content: center;
+            }
+
+            .btn {
+                min-width: 150px;
+                padding: 14px 25px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .detail-section {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .episodes-main-container {
+                flex-direction: column;
+            }
+
+            .episodes-list-container {
+                max-height: 400px;
+            }
+            
+            .episode-list-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .episode-number, .episode-title, .episode-meta {
+                width: 100%;
+                text-align: right;
+            }
+            
+            .episode-meta {
+                min-width: auto;
+            }
+            
+            .servers-dropdown {
+                width: 300px;
+                right: 50%;
+                transform: translateX(50%) translateY(-10px);
+            }
+            
+            .servers-dropdown.active {
+                transform: translateX(50%) translateY(0);
+            }
+            
+            .seasons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            #detail-title {
+                font-size: 1.6rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .episodes-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .episodes-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .servers-dropdown {
+                width: 280px;
+            }
+            
+            .server-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .server-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .server-action-btn {
+                width: 100%;
+            }
+            
+            .control-btn {
+                min-width: 50px;
+                min-height: 50px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">TAFLIM</div>
+        <nav class="nav-links">
+            <a href="index.html">🏠 الرئيسية</a>
+            <a href="movies.html">🎬 الأفلام</a>
+            <a href="series.html">📺 المسلسلات</a>
+            <a href="anime.html">🇯🇵 الأنمي</a>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main>
+        <!-- القسم الرئيسي -->
+        <div class="detail-hero">
+            <div class="poster-container">
+                <img id="detail-poster" src="" alt="Poster">
+                <div class="poster-badge" id="type-badge">فيلم</div>
+            </div>
+            
+            <div class="detail-info">
+                <h1 id="detail-title"></h1>
+                
+                <div class="detail-meta" id="detail-meta">
+                    <!-- سيتم تعبئتها بالجافاسكريبت -->
+                </div>
+                
+                <p id="detail-description"></p>
+                
+                <!-- الأزرار الرئيسية مع قائمة السيرفرات المنبثقة -->
+                <div class="action-buttons">
+                    <button id="watch-btn" class="btn watch-btn">▶ شاهد الآن</button>
+                    <button id="download-btn" class="btn download-btn">⬇ تحميل</button>
+                    
+                    <!-- قائمة السيرفرات المنبثقة (للأفلام فقط) -->
+                    <div id="servers-dropdown" class="servers-dropdown">
+                        <div class="servers-dropdown-header">
+                            <h3 class="servers-dropdown-title">اختر سيرفر المشاهدة</h3>
+                        </div>
+                        <div class="servers-list" id="servers-list">
+                            <!-- سيتم تعبئتها بالجافاسكريبت -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم التريلر -->
+        <div class="detail-section trailer-section">
+            <h3 class="section-title">التريلر الرسمي</h3>
+            <div class="trailer-container">
+                <iframe id="trailer-iframe" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- قسم التحميل (للأفلام فقط) -->
+        <div id="movie-download-section" class="detail-section" style="display:none;">
+            <h3 class="section-title">خيارات التحميل</h3>
+            <div class="download-options" id="download-options">
+                <!-- سيتم تعبئتها بالجافاسكريبت -->
+            </div>
+        </div>
+
+        <!-- قسم الحلقات (للمسلسلات والأنمي فقط) -->
+        <div id="episodes-section" class="detail-section" style="display:none;">
+            <div class="episodes-header">
+                <h3 class="section-title">الحلقات</h3>
+                <div class="episodes-controls">
+                    <button id="reverse-order-btn" class="control-btn" title="عكس ترتيب الحلقات">
+                        <i class="fas fa-sort-amount-down fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="episodes-main-container">
+                <div class="episodes-list-container">
+                    <div class="episodes-scroll-indicator" id="scroll-indicator">
+                        اسحب لأعلى/أسفل للتصفح
+                    </div>
+                    <div class="episodes-list" id="episodes-list">
+                        <!-- سيتم تعبئتها بالجافاسكريبت -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم المواسم الأخرى (للمسلسلات والأنمي) -->
+        <div id="other-seasons-section" class="detail-section" style="display:none;">
+            <h3 class="section-title">مواسم أخرى وإصدارات</h3>
+            <div class="seasons-grid" id="seasons-grid">
+                <!-- سيتم تعبئتها بالجافاسكريبت -->
+            </div>
+        </div>
+
+        <!-- قسم التوصيات -->
+        <div class="detail-section">
+            <h3 class="section-title">قد يعجبك أيضاً</h3>
+            <div class="recommendations-grid" id="recommendations-grid">
+                <!-- سيتم تعبئتها بالجافاسكريبت -->
+            </div>
+        </div>
+    </main>
+
+    <!-- الفوتر مع نسبة TMDb -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 TAFLIM - جميع الحقوق محفوظة</p>
+            <p class="footer-tagline">🎞️ وجهتك الأولى لمشاهدة أفضل الأفلام والمسلسلات</p>
+            <!-- نسبة TMDb القانونية -->
+            <p style="margin-top: 10px; font-size: 0.8em; color: #666;">
+                هذا المنتج يستخدم واجهة برمجة تطبيقات TMDB ولكنه غير معتمد أو معتمد من قبل TMDb.
+                <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="TMDb Logo" style="height: 20px; vertical-align: middle; margin-right: 5px;">
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+// ========== TAFLIM - صفحة التفاصيل النهائية ==========
+
+// ===== إعدادات API =====
+const TMDB_KEY = "dbb14198ea29a547de77343dc3fe7a37";
+const OMDB_KEY = "6584b042";
+const CUSTOM_API_KEY = "OxatsNqfOlchppjmnwDGXWmBQ1Ff9hAh72nVVdoz";
+const IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
+
+// ===== متغيرات النظام =====
+const params = new URLSearchParams(window.location.search);
+const mediaType = params.get("type") || "movie";
+const mediaId = params.get("id");
+
+// ===== نظام اللغات الذكي المحسن =====
+const LANGUAGE_CONFIG = {
+    "ko": { 
+        language: "ar-SA", 
+        flag: "🇰🇷", 
+        name: "كوري", 
+        displayLang: "ar",
+        isArabicTitle: true,
+        priorityArabic: true
+    },
+    "hi": { 
+        language: "ar-SA", 
+        flag: "🇮🇳", 
+        name: "هندي", 
+        displayLang: "ar",
+        isArabicTitle: true,
+        priorityArabic: false
+    },
+    "tr": { 
+        language: "ar-SA", 
+        flag: "🇹🇷", 
+        name: "تركي", 
+        displayLang: "ar",
+        isArabicTitle: true,
+        priorityArabic: false
+    },
+    "zh": { 
+        language: "ar-SA", 
+        flag: "🇨🇳", 
+        name: "صيني", 
+        displayLang: "ar",
+        isArabicTitle: true,
+        priorityArabic: false
+    },
+    "ja": { 
+        language: "ja-JP", 
+        flag: "🇯🇵", 
+        name: "ياباني", 
+        displayLang: "romanji",
+        isArabicTitle: false,
+        priorityArabic: false
+    },
+    "ar": { 
+        language: "ar-SA", 
+        flag: "🇸🇦", 
+        name: "عربي", 
+        displayLang: "ar",
+        isArabicTitle: true,
+        priorityArabic: false
+    },
+    "th": { 
+        language: "ar-SA", 
+        flag: "🇹🇭", 
+        name: "تايلندي", 
+        displayLang: "ar",
+        isArabicTitle: true,
+        priorityArabic: false
+    },
+    "vi": { 
+        language: "ar-SA", 
+        flag: "🇻🇳", 
+        name: "فيتنامي", 
+        displayLang: "ar",
+        isArabicTitle: true,
+        priorityArabic: false
+    },
+    "default": { 
+        language: "en-US", 
+        flag: "🌍", 
+        name: "أجنبي", 
+        displayLang: "en",
+        isArabicTitle: false,
+        priorityArabic: false
+    }
+};
+
+// قاموس الترجمات الموسع
+const TITLE_TRANSLATIONS = {
+    "Squid Game": "لعبة الحبار",
+    "Vincenzo": "فينسنزو",
+    "Crash Landing on You": "هبوط اضطراري",
+    "Goblin": "الغوبلين",
+    "The Glory": "المجد",
+    "Descendants of the Sun": "أبناء الشمس",
+    "Itaewon Class": "فئة إيتاون",
+    "Business Proposal": "اقتراح عمل",
+    "Hometown Cha-Cha-Cha": "موطن تشا تشا تشا",
+    "Mr. Sunshine": "السيد شاين",
+    "Reply 1988": "رد 1988",
+    "Hospital Playlist": "قائمة مستشفى",
+    "Extraordinary Attorney Woo": "المحامية وو الشاطرة",
+    "The King's Affection": "عاطفة الملك",
+    "Alchemy of Souls": "كيمياء الأرواح",
+    "Twenty Five Twenty One": "خمسة وعشرون واحد وعشرون",
+    
+    "RRR": "آر آر آر",
+    "Baahubali": "باهوبالي",
+    "3 Idiots": "3 أغبياء",
+    "Dangal": "دانغال",
+    
+    "Kuruluş: Osman": "التأسيس: عثمان",
+    "Diriliş: Ertuğrul": "القيامة: أرطغرل",
+    
+    "Attack on Titan": "هجوم العمالقة",
+    "Demon Slayer": "قاتل الشياطين",
+    "Jujutsu Kaisen": "كايسن الجوجوتسو",
+    "My Hero Academia": "أكاديميتي للأبطال",
+    "Naruto": "ناروتو",
+    
+    "Stranger Things": "أشياء غريبة",
+    "Game of Thrones": "لعبة العروش",
+    "Breaking Bad": "بريكينج باد",
+    "The Witcher": "الوحش",
+    "Money Heist": "سرقة المال",
+    
+    "Interstellar": "بين النجوم",
+    "Inception": "بداية",
+    "The Dark Knight": "الفارس المظلم",
+    "Parasite": "الطفيلي",
+    "Avengers": "المنتقمون"
+};
+
+// دالة الحصول على عنوان ذكي محسنة
+function getSmartTitle(item) {
+    if (!item) return "غير معروف";
+    
+    const originalLang = item.original_language || "en";
+    const langConfig = LANGUAGE_CONFIG[originalLang] || LANGUAGE_CONFIG.default;
+    
+    let title = item.title || item.name || item.original_title || item.original_name || "";
+    
+    // PRIORITY FOR KOREAN CONTENT - ARABIC FIRST
+    if (originalLang === "ko") {
+        if (TITLE_TRANSLATIONS[title]) {
+            return TITLE_TRANSLATIONS[title];
+        }
+        return title || "عنوان غير معروف";
+    }
+    
+    // باقي المحتوى مع Fallback محسن
+    if (langConfig.displayLang === "romanji") {
+        return TITLE_TRANSLATIONS[title] || title || "عنوان غير معروف";
+    } else if (langConfig.isArabicTitle) {
+        const arabicTitle = TITLE_TRANSLATIONS[title];
+        return arabicTitle || title || "عنوان غير معروف";
+    } else {
+        return title || "عنوان غير معروف";
+    }
+}
+
+// ===== بيانات افتراضية للسيرفرات =====
+const DEFAULT_SERVERS = {
+    streaming: [
+        { name: "سيرفر 1", url: "#", quality: "HD" },
+        { name: "سيرفر 2", url: "#", quality: "FHD" },
+        { name: "سيرفر 3", url: "#", quality: "4K" },
+        { name: "سيرفر 4", url: "#", quality: "HD" }
+    ],
+    download: [
+        { name: "جوجل درايف", url: "#", quality: "1080p", size: "2.1 GB" },
+        { name: "ميجا", url: "#", quality: "720p", size: "1.5 GB" },
+        { name: "ميديا فاير", url: "#", quality: "480p", size: "800 MB" },
+        { name: "تحميل مباشر", url: "#", quality: "1080p", size: "2.3 GB" }
+    ]
+};
+
+// ===== المتغيرات العامة =====
+let episodesData = [];
+let seasonsData = [];
+let isReverseOrder = false;
+let isDropdownOpen = false;
+
+// ===== جلب البيانات من مصادر مختلفة مع تحسين الصور =====
+async function fetchMediaDetails() {
+    let data = null;
+    
+    try {
+        // المحاولة الأولى: TMDB (API الرئيسي) - باللغة العربية + الصور العربية
+        const tmdbResponse = await fetch(
+            `https://api.themoviedb.org/3/${mediaType}/${mediaId}?api_key=${TMDB_KEY}&language=ar&include_image_language=ar,null&append_to_response=videos,credits,similar,external_ids`
+        );
+        
+        if (tmdbResponse.ok) {
+            data = await tmdbResponse.json();
+            
+            // تطبيق نظام العناوين الذكية
+            data.smartTitle = getSmartTitle(data);
+            
+            // إذا كان محتوى المسلسل، جلب بيانات المواسم
+            if (mediaType === 'tv' || mediaType === 'anime') {
+                const seasonsResponse = await fetch(
+                    `https://api.themoviedb.org/3/tv/${mediaId}?api_key=${TMDB_KEY}&language=ar&include_image_language=ar,null`
+                );
+                if (seasonsResponse.ok) {
+                    const tvData = await seasonsResponse.json();
+                    seasonsData = tvData.seasons || [];
+                    
+                    // جلب بيانات حلقات الموسم الأول
+                    if (seasonsData.length > 0) {
+                        const seasonNumber = seasonsData[0].season_number;
+                        const episodesResponse = await fetch(
+                            `https://api.themoviedb.org/3/tv/${mediaId}/season/${seasonNumber}?api_key=${TMDB_KEY}&language=ar&include_image_language=ar,null`
+                        );
+                        if (episodesResponse.ok) {
+                            const episodesDataResp = await episodesResponse.json();
+                            episodesData = episodesDataResp.episodes || [];
+                            
+                            // تطبيق العناوين الذكية للحلقات
+                            episodesData.forEach(episode => {
+                                episode.smartTitle = getSmartTitle(episode);
+                            });
+                        }
+                    }
+                }
+            }
+            
+            // التحقق من اكتمال البيانات
+            if (isDataComplete(data)) {
+                return data;
+            }
+        }
+    } catch (error) {
+        console.log("TMDB API Error:", error);
+    }
+    
+    // المحاولة الثانية: OMDB API (API احتياطي)
+    if (!data || !isDataComplete(data)) {
+        try {
+            // الحصول على معرّف IMDB من البيانات إذا موجود
+            const imdbId = data?.external_ids?.imdb_id || await getImdbId(mediaId, mediaType);
+            
+            if (imdbId) {
+                const omdbResponse = await fetch(
+                    `https://www.omdbapi.com/?i=${imdbId}&apikey=${OMDB_KEY}&plot=full`
+                );
+                
+                if (omdbResponse.ok) {
+                    const omdbData = await omdbResponse.json();
+                    
+                    if (omdbData.Response === "True") {
+                        // دمج البيانات مع بيانات TMDB
+                        data = mergeData(data, omdbData);
+                        data.smartTitle = getSmartTitle(data);
+                    }
+                }
+            }
+        } catch (error) {
+            console.log("OMDB API Error:", error);
+        }
+    }
+    
+    // المحاولة الثالثة: API الخاص (API احتياطي ثانوي)
+    if (!data || !isDataComplete(data)) {
+        try {
+            const customResponse = await fetch(
+                `https://api.themoviedb.org/3/${mediaType}/${mediaId}?api_key=${CUSTOM_API_KEY}&language=ar&include_image_language=ar,null&append_to_response=videos,credits,similar`
+            );
+            
+            if (customResponse.ok) {
+                const customData = await customResponse.json();
+                data = mergeData(data, customData);
+                data.smartTitle = getSmartTitle(data);
+            }
+        } catch (error) {
+            console.log("Custom API Error:", error);
+        }
+    }
+    
+    // إذا فشلت جميع المحاولات، استخدام بيانات افتراضية
+    if (!data) {
+        data = await getFallbackData();
+        data.smartTitle = getSmartTitle(data);
+    }
+    
+    return data;
+}
+
+// ===== دوال مساعدة =====
+// التحقق من اكتمال البيانات
+function isDataComplete(data) {
+    return data && 
+           (data.title || data.name) &&
+           data.overview &&
+           (data.poster_path || data.backdrop_path) &&
+           (data.release_date || data.first_air_date);
+}
+
+// دمج البيانات من مصادر مختلفة
+function mergeData(tmdbData, otherData) {
+    if (!tmdbData) return otherData;
+    if (!otherData) return tmdbData;
+    
+    return {
+        ...tmdbData,
+        title: tmdbData.title || otherData.Title || tmdbData.name,
+        name: tmdbData.name || otherData.Title || tmdbData.title,
+        overview: tmdbData.overview || otherData.Plot || "لا يوجد وصف متوفر",
+        poster_path: tmdbData.poster_path || otherData.Poster || null,
+        backdrop_path: tmdbData.backdrop_path || null,
+        release_date: tmdbData.release_date || otherData.Released || tmdbData.first_air_date,
+        first_air_date: tmdbData.first_air_date || otherData.Released || tmdbData.release_date,
+        vote_average: tmdbData.vote_average || parseFloat(otherData.imdbRating) || 0,
+        runtime: tmdbData.runtime || parseInt(otherData.Runtime) || 0,
+        genres: tmdbData.genres || (otherData.Genre ? [{ name: otherData.Genre }] : []),
+        imdb_id: tmdbData.imdb_id || otherData.imdbID || null
+    };
+}
+
+// الحصول على معرّف IMDB
+async function getImdbId(tmdbId, type) {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/${type}/${tmdbId}/external_ids?api_key=${TMDB_KEY}`
+        );
+        if (response.ok) {
+            const data = await response.json();
+            return data.imdb_id;
+        }
+    } catch (error) {
+        console.log("Error fetching IMDB ID:", error);
+    }
+    return null;
+}
+
+// بيانات افتراضية للطوارئ
+async function getFallbackData() {
+    const isMovie = mediaType === 'movie';
+    const title = isMovie ? "فيلم غير معروف" : "مسلسل غير معروف";
+    
+    return {
+        title: title,
+        name: title,
+        overview: "لا يوجد وصف متوفر حاليًا. سيتم تحديث البيانات قريبًا.",
+        poster_path: null,
+        backdrop_path: null,
+        release_date: "2024-01-01",
+        first_air_date: "2024-01-01",
+        vote_average: 0,
+        runtime: 120,
+        genres: [{ name: "دراما" }, { name: "تشويق" }],
+        videos: { results: [] },
+        similar: { results: [] }
+    };
+}
+
+// ===== عرض البيانات =====
+async function displayMediaDetails() {
+    if (!mediaId) {
+        window.location.href = 'index.html';
+        return;
+    }
+    
+    const data = await fetchMediaDetails();
+    
+    if (!data) {
+        document.body.innerHTML = `
+            <div style="text-align:center; padding:100px; color:#ff3b3b;">
+                <h1>⚠️ حدث خطأ في تحميل البيانات</h1>
+                <p>يرجى المحاولة مرة أخرى لاحقاً</p>
+                <a href="index.html" style="color:#ff3b3b; text-decoration:none;">← العودة للرئيسية</a>
+            </div>
+        `;
+        return;
+    }
+    
+    // تحديد نوع المحتوى
+    const isMovie = mediaType === 'movie';
+    const isSeries = mediaType === 'tv' || mediaType === 'anime';
+    
+    // تحديث الشارة
+    document.getElementById('type-badge').textContent = 
+        isMovie ? 'فيلم' : 
+        mediaType === 'anime' ? 'أنمي' : 'مسلسل';
+    
+    // العنوان (باستخدام النظام الذكي)
+    const smartTitle = data.smartTitle || data.title || data.name || data.original_title || data.original_name || "عنوان غير معروف";
+    document.getElementById('detail-title').textContent = smartTitle;
+    
+    // تحديث عنوان الصفحة
+    document.title = `${smartTitle} | TAFLIM`;
+    
+    // البوستر مع الأولوية للصور العربية
+    let posterUrl = 'https://via.placeholder.com/300x450/1a1f25/888888?text=No+Poster';
+    if (data.poster_path) {
+        posterUrl = `${IMAGE_BASE}${data.poster_path}`;
+    } else if (data.backdrop_path) {
+        posterUrl = `https://image.tmdb.org/t/p/w780${data.backdrop_path}`;
+    }
+    document.getElementById('detail-poster').src = posterUrl;
+    document.getElementById('detail-poster').onerror = function() {
+        this.src = 'https://via.placeholder.com/300x450/1a1f25/888888?text=No+Poster';
+    };
+    
+    // البيانات الوصفية
+    const metaContainer = document.getElementById('detail-meta');
+    const year = data.release_date?.split('-')[0] || 
+                data.first_air_date?.split('-')[0] || 
+                data.Released?.split(' ')[2] || 
+                'N/A';
+    
+    const rating = data.vote_average ? data.vote_average.toFixed(1) : 
+                  (data.imdbRating || 'N/A');
+    
+    const runtime = isMovie ? 
+                   `${data.runtime || data.Runtime?.split(' ')[0] || 120} دقيقة` : 
+                   '';
+    
+    let genres = "غير معروف";
+    if (data.genres && data.genres.length > 0) {
+        genres = data.genres.map(g => g.name).join('، ');
+    } else if (data.Genre) {
+        genres = data.Genre;
+    }
+    
+    metaContainer.innerHTML = `
+        <div class="meta-item">
+            <span class="rating">⭐ ${rating}/10</span>
+        </div>
+        <div class="meta-item">📅 ${year}</div>
+        ${runtime ? `<div class="meta-item">⏱️ ${runtime}</div>` : ''}
+        <div class="meta-item">🎭 ${genres}</div>
+    `;
+    
+    // الوصف (العربية)
+    const description = data.overview || 
+                       data.Plot || 
+                       'لا يوجد وصف متوفر حالياً.';
+    document.getElementById('detail-description').textContent = description;
+    
+    // التريلر
+    const trailer = data.videos?.results?.find(v => 
+        v.type === 'Trailer' && v.site === 'YouTube'
+    );
+    
+    if (trailer) {
+        document.getElementById('trailer-iframe').src = 
+            `https://www.youtube.com/embed/${trailer.key}?rel=0&modestbranding=1`;
+    } else {
+        document.querySelector('.trailer-container').innerHTML = `
+            <div style="position:absolute; top:0; right:0; width:100%; height:100%; 
+                       display:flex; align-items:center; justify-content:center; 
+                       background:#000; color:#888;">
+                <p>لا يتوفر تريلر حالياً</p>
+            </div>
+        `;
+    }
+    
+    // إعداد قائمة السيرفرات المنبثقة
+    setupServersDropdown();
+    
+    // إظهار/إخفاء الأقسام حسب النوع
+    if (isMovie) {
+        // فيلم: إظهار قسم التحميل
+        document.getElementById('movie-download-section').style.display = 'block';
+        
+        // إضافة خيارات التحميل
+        const downloadOptions = document.getElementById('download-options');
+        downloadOptions.innerHTML = '';
+        DEFAULT_SERVERS.download.forEach(option => {
+            const card = document.createElement('div');
+            card.className = 'download-card';
+            card.innerHTML = `
+                <span class="quality-badge">${option.quality}</span>
+                <h4>${option.name}</h4>
+                <p style="color:#888; margin:10px 0;">الحجم: ${option.size}</p>
+                <button class="server-action-btn" onclick="window.open('${option.url}', '_blank')">
+                    ⬇ تحميل
+                </button>
+            `;
+            downloadOptions.appendChild(card);
+        });
+    } else if (isSeries) {
+        // مسلسل/أنمي: إظهار قسم الحلقات
+        document.getElementById('episodes-section').style.display = 'block';
+        
+        // إظهار قسم المواسم الأخرى إذا كانت موجودة
+        if (seasonsData && seasonsData.length > 1) {
+            document.getElementById('other-seasons-section').style.display = 'block';
+            await displayOtherSeasons();
+        }
+        
+        // جلب وعرض الحلقات
+        await displayEpisodesList();
+    }
+    
+    // جلب التوصيات
+    await displayRecommendations(data.similar?.results || []);
+    
+    // إضافة أحداث للأزرار
+    setupEventListeners();
+}
+
+// ===== إدارة السيرفرات =====
+// إعداد قائمة السيرفرات المنبثقة
+function setupServersDropdown() {
+    const serversList = document.getElementById('servers-list');
+    const dropdown = document.getElementById('servers-dropdown');
+    
+    serversList.innerHTML = '';
+    DEFAULT_SERVERS.streaming.forEach(server => {
+        const serverItem = document.createElement('div');
+        serverItem.className = 'server-item';
+        serverItem.innerHTML = `
+            <div class="server-info">
+                <span class="server-quality">${server.quality}</span>
+                <span class="server-name">${server.name}</span>
+            </div>
+            <button class="server-action-btn" onclick="openServer('${server.url}')">
+                تشغيل
+            </button>
+        `;
+        serversList.appendChild(serverItem);
+    });
+    
+    // إغلاق القائمة المنبثقة عند النقر خارجها
+    document.addEventListener('click', (e) => {
+        if (isDropdownOpen && !dropdown.contains(e.target) && e.target.id !== 'watch-btn') {
+            dropdown.classList.remove('active');
+            isDropdownOpen = false;
+        }
+    });
+}
+
+// فتح سيرفر
+function openServer(url) {
+    window.open(url, '_blank');
+    // إغلاق القائمة المنبثقة بعد الاختيار
+    document.getElementById('servers-dropdown').classList.remove('active');
+    isDropdownOpen = false;
+}
+
+// ===== إدارة الحلقات =====
+// عرض الحلقات كقائمة
+async function displayEpisodesList() {
+    const episodesListContainer = document.getElementById('episodes-list');
+    episodesListContainer.innerHTML = '';
+    
+    // استخدام البيانات المخزنة أو إنشاء بيانات افتراضية
+    let episodes = episodesData || [];
+    
+    if (episodes.length === 0) {
+        // إنشاء بيانات افتراضية
+        for (let i = 1; i <= 12; i++) {
+            episodes.push({
+                episode_number: i,
+                name: `الحلقة ${i}`,
+                overview: `وصف للحلقة ${i} من المسلسل`,
+                still_path: null,
+                runtime: 45,
+                air_date: '2024-01-01',
+                season_number: 1,
+                smartTitle: `الحلقة ${i}`
+            });
+        }
+    }
+    
+    // عرض الحلقات
+    episodes.forEach(episode => {
+        const episodeItem = createEpisodeListItem(episode);
+        episodesListContainer.appendChild(episodeItem);
+    });
+    
+    // إضافة حدث لعكس الترتيب
+    document.getElementById('reverse-order-btn').addEventListener('click', () => {
+        isReverseOrder = !isReverseOrder;
+        reverseEpisodesOrder();
+        updateReverseOrderButton();
+    });
+    
+    // تحديث زر عكس الترتيب
+    updateReverseOrderButton();
+    
+    // إضافة مؤشر التمرير
+    setupScrollIndicator();
+}
+
+// تحديث زر عكس الترتيب
+function updateReverseOrderButton() {
+    const icon = document.querySelector('#reverse-order-btn i');
+    
+    if (isReverseOrder) {
+        icon.className = 'fas fa-sort-amount-up fa-lg';
+        icon.title = "الترتيب الأصلي";
+    } else {
+        icon.className = 'fas fa-sort-amount-down fa-lg';
+        icon.title = "عكس الترتيب";
+    }
+}
+
+// إنشاء عنصر قائمة للحلقة
+function createEpisodeListItem(episode) {
+    const div = document.createElement('div');
+    div.className = 'episode-list-item';
+    div.dataset.episodeNumber = episode.episode_number;
+    div.dataset.episodeId = episode.id;
+    
+    // تاريخ البث
+    const airDate = episode.air_date ? new Date(episode.air_date) : null;
+    const dateString = airDate ? airDate.toLocaleDateString('ar-EG') : 'غير معروف';
+    
+    // استخدام العنوان الذكي للحلقة
+    const episodeTitle = episode.smartTitle || episode.name || `الحلقة ${episode.episode_number}`;
+    
+    div.innerHTML = `
+        <div class="episode-number">الحلقة ${episode.episode_number}</div>
+        <div class="episode-title">${episodeTitle}</div>
+        <div class="episode-meta">
+            <span>⏱️ ${episode.runtime || 45} دقيقة</span>
+            <span> | 📅 ${dateString}</span>
+        </div>
+    `;
+    
+    // إضافة حدث النقر
+    div.addEventListener('click', () => {
+        // إزالة النشط من جميع الحلقات
+        document.querySelectorAll('.episode-list-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // إضافة النشط للحلقة المختارة
+        div.classList.add('active');
+        
+        // فتح الحلقة
+        openEpisode(episode);
+    });
+    
+    return div;
+}
+
+// عرض المواسم الأخرى
+async function displayOtherSeasons() {
+    const seasonsGrid = document.getElementById('seasons-grid');
+    seasonsGrid.innerHTML = '';
+    
+    // تصفية الموسم الحالي (الموسم الأول عادة)
+    const otherSeasons = seasonsData.filter(season => season.season_number > 1);
+    
+    if (otherSeasons.length === 0) {
+        seasonsGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#888;">لا توجد مواسم أخرى</p>';
+        return;
+    }
+    
+    otherSeasons.forEach(season => {
+        const seasonCard = document.createElement('a');
+        seasonCard.className = 'season-card';
+        seasonCard.href = `details.html?type=${mediaType}&id=${mediaId}&season=${season.season_number}`;
+        
+        const posterUrl = season.poster_path ? 
+            `${IMAGE_BASE}${season.poster_path}` : 
+            'https://via.placeholder.com/180x250/1a1f25/888888?text=Season+' + season.season_number;
+        
+        const airYear = season.air_date ? new Date(season.air_date).getFullYear() : 'N/A';
+        
+        seasonCard.innerHTML = `
+            <img src="${posterUrl}" alt="الموسم ${season.season_number}" loading="lazy">
+            <div class="season-info">
+                <div class="season-title">الموسم ${season.season_number}</div>
+                <div class="season-meta">
+                    <span>${season.episode_count} حلقة</span>
+                    <span> | 📅 ${airYear}</span>
+                </div>
+            </div>
+        `;
+        
+        seasonsGrid.appendChild(seasonCard);
+    });
+}
+
+// عكس ترتيب الحلقات
+function reverseEpisodesOrder() {
+    const episodesListContainer = document.getElementById('episodes-list');
+    const episodes = Array.from(episodesListContainer.children);
+    
+    // عكس ترتيب المصفوفة
+    episodes.reverse();
+    
+    // إعادة إضافة العناصر بالترتيب الجديد
+    episodesListContainer.innerHTML = '';
+    episodes.forEach(episode => {
+        episodesListContainer.appendChild(episode);
+    });
+}
+
+// فتح صفحة الحلقة
+function openEpisode(episode) {
+    // فتح صفحة الحلقة
+    window.open(`episode.html?type=${mediaType}&id=${mediaId}&season=${episode.season_number}&episode=${episode.episode_number}`, '_blank');
+}
+
+// إعداد مؤشر التمرير
+function setupScrollIndicator() {
+    const episodesContainer = document.querySelector('.episodes-list-container');
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    
+    if (episodesContainer) {
+        episodesContainer.addEventListener('scroll', () => {
+            const scrollTop = episodesContainer.scrollTop;
+            const scrollHeight = episodesContainer.scrollHeight;
+            const clientHeight = episodesContainer.clientHeight;
+            
+            // تحديث نص المؤشر
+            if (scrollTop === 0) {
+                scrollIndicator.textContent = 'بداية القائمة';
+            } else if (scrollTop + clientHeight >= scrollHeight - 10) {
+                scrollIndicator.textContent = 'نهاية القائمة';
+            } else {
+                scrollIndicator.textContent = 'اسحب لأعلى/أسفل للتصفح';
+            }
+        });
+    }
+}
+
+// ===== التوصيات =====
+// عرض التوصيات
+async function displayRecommendations(recommendations) {
+    const grid = document.getElementById('recommendations-grid');
+    grid.innerHTML = '';
+    
+    if (!recommendations || recommendations.length === 0) {
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#888;">لا توجد توصيات متاحة</p>';
+        return;
+    }
+    
+    // عرض أول 6 توصيات فقط
+    const limitedRecs = recommendations.slice(0, 6);
+    
+    for (const item of limitedRecs) {
+        const card = document.createElement('a');
+        card.className = 'rec-card';
+        card.href = `details.html?type=${mediaType}&id=${item.id}`;
+        
+        const poster = item.poster_path ? 
+            `${IMAGE_BASE}${item.poster_path}` : 
+            'https://via.placeholder.com/160x200/1a1f25/888888?text=No+Poster';
+        
+        // تطبيق نظام العناوين الذكية للتوصيات
+        const smartRecTitle = getSmartTitle(item);
+        
+        card.innerHTML = `
+            <img src="${poster}" alt="${smartRecTitle}" loading="lazy"
+                 onerror="this.src='https://via.placeholder.com/160x200/1a1f25/888888?text=No+Poster'">
+            <div class="rec-info">
+                <div class="rec-title">${smartRecTitle}</div>
+                <div style="color:#888; font-size:0.9rem;">
+                    ⭐ ${item.vote_average ? item.vote_average.toFixed(1) : 'N/A'}
+                </div>
+            </div>
+        `;
+        
+        grid.appendChild(card);
+    }
+}
+
+// ===== أحداث الأزرار =====
+// إعداد أحداث الأزرار
+function setupEventListeners() {
+    const isMovie = mediaType === 'movie';
+    const isSeries = mediaType === 'tv' || mediaType === 'anime';
+    const dropdown = document.getElementById('servers-dropdown');
+    
+    // زر المشاهدة
+    document.getElementById('watch-btn').addEventListener('click', (e) => {
+        if (isMovie) {
+            // للأفلام: فتح/إغلاق قائمة السيرفرات المنبثقة
+            e.stopPropagation();
+            isDropdownOpen = !isDropdownOpen;
+            dropdown.classList.toggle('active');
+        } else {
+            // للمسلسلات والأنمي: التمرير لقسم الحلقات
+            document.getElementById('episodes-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+    
+    // زر التحميل
+    document.getElementById('download-btn').addEventListener('click', () => {
+        if (isMovie) {
+            // للأفلام: التمرير لقسم التحميل
+            document.getElementById('movie-download-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        } else {
+            // للمسلسلات والأنمي: التمرير لقسم الحلقات
+            document.getElementById('episodes-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+    
+    // زر العودة للصفحة الرئيسية في الشريط العلوي
+    document.querySelector('.logo').addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+}
+
+// ===== تهيئة الصفحة =====
+// بدء التحميل عند فتح الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+    if (!mediaId) {
+        window.location.href = 'index.html';
+        return;
+    }
+    
+    displayMediaDetails();
+});
+    </script>
+</body>
+</html>
