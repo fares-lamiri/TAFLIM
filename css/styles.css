@@ -1013,7 +1013,7 @@ footer {
   }
   
   .card .card-content {
-    padding: 10px 1px;
+    padding: 6px 3px;
     min-height: 40px;
   }
 
@@ -1155,6 +1155,7 @@ footer {
 .card div:last-child div:last-child {
     display: none !important;
 }
+
 
 
 
