@@ -1009,7 +1009,7 @@ footer {
     font-size: 0.85rem;
     min-height: 2.6em;
     max-height: 2.6em;
-    padding: 10px 6px;
+    padding: 6px 5px;
   }
   
   .card .card-content {
@@ -1155,4 +1155,5 @@ footer {
 .card div:last-child div:last-child {
     display: none !important;
 }
+
 
