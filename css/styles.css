@@ -915,7 +915,7 @@ footer {
     font-size: 0.85rem;
     min-height: 2.6em;
     max-height: 2.6em;
-    padding: 6px 5px;
+    padding: 12px 8px;
   }
   
   .trending-arrow {
@@ -1009,7 +1009,7 @@ footer {
     font-size: 0.85rem;
     min-height: 2.6em;
     max-height: 2.6em;
-    padding: 6px 5px;
+    padding: 10px 6px;
   }
   
   .card .card-content {
@@ -1155,5 +1155,6 @@ footer {
 .card div:last-child div:last-child {
     display: none !important;
 }
+
 
 
